@@ -25,7 +25,7 @@ SECRET_KEY = '8)pph9yidk7ar4wfjy*xg&oqz45o_kklvz2e1aj9%rxzz^6r12'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'events',
     'usuarios',
+    'phonenumber_field',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'AndroidApp.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
 
 
 # Database
@@ -113,13 +122,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mazatlan'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
 
 
 # Static files (CSS, JavaScript, Images)

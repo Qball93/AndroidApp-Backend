@@ -21,8 +21,6 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('event/', include('events.urls')),
+    path('events/', include('events.urls')),
     path('usuarios/', include('usuarios.urls')),
-    path('', RedirectView.as_view(url='event')),
-    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
