@@ -13,5 +13,6 @@ app_name = 'events'
 
 
 urlpatterns = [
+    path('update/<int:pk>', views.UpdateTypeView.as_view(), name='update'),
     path('', include(router.urls))
 ]

@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
 from django_filters import Filter, FilterSet
-from .serializers import ListEventSerializer, CreateEventSerializer, TipoEventSerializer
+from .serializers import ListEventSerializer, CreateEventSerializer, TipoEventSerializer, TipoUpdateSerializer
 from .models import Evento, TipoEvent
 from django.utils import timezone
 from datetime import datetime, date
@@ -21,6 +21,7 @@ class TipoEventViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
     permission_classes = [permissions.IsAdminUser]
     serializer_class = TipoEventSerializer
     queryset = TipoEvent.objects.all()
+    filterset_fields = ['Activo']
 
 
     def get_queryset(self):
@@ -32,8 +33,18 @@ class TipoEventViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
         """Create a new event Type"""
         serializer.save()
 
-    def perform_update(self, serializer):
-        """update event info"""
+
+
+class UpdateTypeView(generics.UpdateAPIView):
+    """Update user info"""
+    queryset = TipoEvent.objects.all()
+    serializer_class = TipoUpdateSerializer
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAdminUser]
+
+
+    def put(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
 
 
 
@@ -42,6 +53,7 @@ class GetOnlyTipoViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     authentication_classes = [authentication.TokenAuthentication]
     serializer_class = TipoEventSerializer
     queryset = TipoEvent.objects.all()
+    filterset_fields = ['Activo']
 
 
 class EventViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,

@@ -14,6 +14,14 @@ class TipoEventSerializer(serializers.ModelSerializer):
         fields = ('nombre', 'id', 'color')
 
 
+class TipoUpdateSerializer(serializers.ModelSerializer):
+    """Serializer for the active Event type Field"""
+
+    class Meta:
+        model = TipoEvent
+        fields = '__all__'
+
+
 class CreateEventSerializer(serializers.ModelSerializer):
     """Serializer for the creation of user reported events object"""
     Usuario = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
