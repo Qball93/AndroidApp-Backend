@@ -1,0 +1,1 @@
+web: gunicorn AndroidApp.wsgi --log-file -
