@@ -24,6 +24,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     objects = managers.CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nombre', 'apellido']
+    REQUIRED_FIELDS = ['nombre', 'apellido', 'telefono']
 
     
