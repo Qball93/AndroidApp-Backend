@@ -14,5 +14,6 @@ app_name = 'events'
 
 urlpatterns = [
     path('update/<int:pk>', views.UpdateTypeView.as_view(), name='update'),
+    path('deleteEvent/<int:pk>', views.eventDeleteView.as_view(), name='deleteEvent'),
     path('', include(router.urls))
 ]

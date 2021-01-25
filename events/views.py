@@ -80,6 +80,17 @@ class EventViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
         serializer.save()
 
 
+
+class eventDeleteView(generics.UpdateAPIView, mixins.DestroyModelMixin):
+    queryset = Evento.objects.all()
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAdminUser]
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+
 class UserEventCreateViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """Regular event creation view"""
     authentication_classes = [authentication.TokenAuthentication]
