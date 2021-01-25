@@ -89,14 +89,7 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'androidapp',
-        'USER': 'qball',
-        'PASSWORD': 'qballpost',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    DATABSED['default'] = dj_database_url.config(conn_max_age=600)
 }
 
 
